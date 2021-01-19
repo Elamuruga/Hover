@@ -45,25 +45,53 @@ extension HoverPosition {
         let positionConstraints: [NSLayoutConstraint]
         switch self {
         case .topLeft:
-            positionConstraints = [
-                guide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: spacing),
-                guide.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: spacing)
-            ]
+            if #available(iOS 11.0, *) {
+                positionConstraints = [
+                    guide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: spacing),
+                    guide.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: spacing)
+                ]
+            } else {
+                positionConstraints = [
+                    guide.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: spacing),
+                    guide.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: spacing)
+                ]
+            }
         case .topRight:
-            positionConstraints = [
-                guide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: spacing),
-                guide.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -spacing)
-            ]
+            if #available(iOS 11.0, *) {
+                positionConstraints = [
+                    guide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: spacing),
+                    guide.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -spacing)
+                ]
+            } else {
+                positionConstraints = [
+                    guide.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: spacing),
+                    guide.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -spacing)
+                ]
+            }
         case .bottomLeft:
-            positionConstraints = [
-                guide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -spacing),
-                guide.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: spacing)
-            ]
+            if #available(iOS 11.0, *) {
+                positionConstraints = [
+                    guide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -spacing),
+                    guide.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: spacing)
+                ]
+            } else {
+                positionConstraints = [
+                    guide.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -spacing),
+                    guide.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: spacing)
+                ]
+            }
         case .bottomRight:
-            positionConstraints = [
-                guide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -spacing),
-                guide.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -spacing)
-            ]
+            if #available(iOS 11.0, *) {
+                positionConstraints = [
+                    guide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -spacing),
+                    guide.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -spacing)
+                ]
+            } else {
+                positionConstraints = [
+                    guide.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -spacing),
+                    guide.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -spacing)
+                ]
+            }
         }
         NSLayoutConstraint.activate(positionConstraints)
     }
